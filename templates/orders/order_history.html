@@ -5,25 +5,36 @@
 <link rel="stylesheet" href="{% static 'style/orders/order_history.css' %}">
 
 <div class="container mt-4">
-    <h2>Order History</h2>
+    <h2 class="order-history-title">Order History</h2>
     {% if orders %}
-        <ul class="list-group">
+        <div class="order-list">
             {% for order in orders %}
-            <li class="list-group-item">
-                <strong>Order #{{ order.id }}</strong> - {{ order.created_at|date:"Y-m-d H:i" }}<br>
-                Items:
-                <ul>
-                    {% for item in order.items.all %}
-                        <li>{{ item.product.name }} (x{{ item.quantity }}) - ₹{{ item.total_price }}</li>
-                        <li>Delivery charges - ₹50</li>
-                    {% endfor %}
-                </ul>
-                <strong>Total: ₹{{ order.total|add:"0"|add:50 }}</strong>
-            </li>
+                <div class="order-card mb-4">
+                    <div class="order-header">
+                        <strong>Order #{{ order.id }}</strong> - {{ order.created_at|date:"Y-m-d H:i" }}
+                    </div>
+                    <div class="order-items">
+                        <h5>Items:</h5>
+                        <ul>
+                            {% for item in order.items.all %}
+                                <li class="order-item">
+                                    <span>{{ item.product.name }} (x{{ item.quantity }})</span> - ₹{{ item.total_price }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="order-delivery-charge">
+                            <strong>Delivery charges</strong> - ₹50
+                        </div>
+                    </div>
+                    <div class="order-total">
+                        <strong>Total: ₹{{ order.total|add:"0"|add:50 }}</strong>
+                    </div>
+                </div>
             {% endfor %}
-        </ul>
+        </div>
     {% else %}
-        <p>You haven’t placed any orders yet.</p>
+        <p class="no-orders-message">You haven’t placed any orders yet.</p>
     {% endif %}
 </div>
+
 {% endblock %}

@@ -25,25 +25,26 @@
     <section class="container text-center my-5">
         <h2>Discover NEW Arrivals</h2>
         <div class="container mt-4">
-    <div class="row">
-        {% for product in products %}
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    {% if product.image %}
-                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
-                    {% endif %}
-                    <div class="card-body">
-                        <h5>{{ product.name }}</h5>
-                        <p>₹{{ product.price }}</p>
-                        <a href="{% url 'product:product_detail' product.pk %}" class="btn btn-primary">View Details</a>
+            <div class="row">
+                {% for product in products|slice:":3" %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" class="card-img-top" style="height: 300px; object-fit: contain;" alt="{{ product.name }}">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5>{{ product.name }}</h5>
+                                <p>₹{{ product.price }}</p>
+                                <a href="{% url 'product:product_detail' product.pk %}" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
-        {% endfor %}
-    </div>
-</div>
+        </div>
         <a href="{% url 'product:product_list' %}" class="btn btn-dark mt-3">VIEW COLLECTION</a>
     </section>
+
 
     <!-- Summer Sale Banner -->
     <section class="sale-banner text-white text-center py-5">

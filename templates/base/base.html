@@ -21,9 +21,14 @@
             </button>
             <a class="navbar-brand fw-bold" href="{% url 'home' %}">Shop-co</a>
 
-            <form class="d-flex search-bar mx-auto">
-                <input class="form-control me-2" type="search" placeholder="Search by product, category or collection" aria-label="Search">
+           <form class="d-flex search-bar mx-auto" method="get" action="{% url 'product:product_list' %}">
+                <input class="form-control me-2" type="search" id="search-input" name="q" placeholder="Search by product, category or collection" aria-label="Search" value="{{ request.GET.q }}">
+                <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
             </form>
+
+
+            <ul id="suggestions-list" class="list-group" style="display: none; position: absolute; z-index: 999;"></ul>
+
 
             <div class="d-flex align-items-center gap-2">
                 <!-- Cart -->
@@ -168,6 +173,40 @@
     document.getElementById('overlay').addEventListener('click', function () {
         document.getElementById('sidebar').classList.remove('active');
         document.getElementById('overlay').classList.remove('active');
+    });
+
+    document.getElementById('search-input').addEventListener('input', function () {
+        const query = this.value;
+
+        if (query.length < 3) {  // Show suggestions only after 3 characters
+            document.getElementById('suggestions-list').style.display = 'none';
+            return;
+        }
+
+        // Make an AJAX request to get suggestions
+        fetch(`/search_suggestions/?q=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                const suggestionsList = document.getElementById('suggestions-list');
+                suggestionsList.innerHTML = '';  // Clear previous suggestions
+                suggestionsList.style.display = 'block';  // Show suggestions list
+
+                if (data.length > 0) {
+                    data.forEach(item => {
+                        const listItem = document.createElement('li');
+                        listItem.classList.add('list-group-item', 'suggestion-item');
+                        listItem.textContent = item;
+                        suggestionsList.appendChild(listItem);
+
+                        listItem.addEventListener('click', function () {
+                            document.getElementById('search-input').value = item;
+                            window.location.href = `/products/?q=${item}`;  // Redirect to the filtered product list page
+                        });
+                    });
+                } else {
+                    suggestionsList.innerHTML = '<li class="list-group-item">No suggestions found</li>';
+                }
+            });
     });
 </script>
 

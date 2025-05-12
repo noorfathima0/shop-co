@@ -97,3 +97,24 @@ background: #333;
 color: white;
 font-size: 11px;
 }
+
+/* Additional Styles for Search Suggestions */
+#suggestions-list {
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: calc(100% - 30px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.suggestion-item {
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}

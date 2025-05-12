@@ -1,67 +1,98 @@
-/* Order History Page - Krist Theme Consistency */
-
+/* General Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fff;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
 }
 
-.container {
-    max-width: 850px;
-}
-
-/* Heading */
-h2 {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 30px;
-    color: #1c1c1c;
-}
-
-/* Order List */
-.list-group {
-    border: none;
-    padding: 0;
-}
-
-/* Each Order Card */
-.list-group-item {
-    border: 1px solid #eee;
-    border-radius: 8px;
+/* Order History Title */
+.order-history-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #343a40;
     margin-bottom: 20px;
-    padding: 20px;
-    background-color: #fafafa;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
 }
 
-/* Order ID & Date */
-.list-group-item strong {
-    font-size: 16px;
-    color: #000;
-}
-
-/* Inner item list */
-.list-group-item ul {
-    padding-left: 20px;
-    margin: 10px 0;
-}
-
-.list-group-item ul li {
-    font-size: 14px;
-    color: #444;
-}
-
-/* Total styling */
-.list-group-item strong:last-child {
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #000;
-}
-
-/* Empty state */
-p {
-    font-size: 16px;
-    color: #555;
+/* Order List Container */
+.order-list {
     margin-top: 20px;
+}
+
+/* Individual Order Card */
+.order-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+/* Order Header */
+.order-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #495057;
+    margin-bottom: 10px;
+}
+
+/* Order Items List */
+.order-items {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.order-items h5 {
+    font-size: 1.1rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.order-items ul {
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.order-item {
+    font-size: 1rem;
+    color: #495057;
+    margin-bottom: 5px;
+}
+
+/* Delivery Charge */
+.order-delivery-charge {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #dc3545;
+    margin-top: 10px;
+}
+
+/* Order Total */
+.order-total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #28a745;
+    margin-top: 15px;
+}
+
+/* No Orders Message */
+.no-orders-message {
+    font-size: 1.2rem;
+    color: #6c757d;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .order-history-title {
+        font-size: 2rem;
+    }
+
+    .order-item {
+        font-size: 0.9rem;
+    }
+
+    .order-total {
+        font-size: 1rem;
+    }
 }

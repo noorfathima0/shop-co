@@ -1,8 +1,30 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load wishlist_tags %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'style/product/list.css' %}">
+
+<style>
+.wishlist-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+    font-size: 22px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.wishlist-icon.added {
+    color: red;
+}
+
+.card {
+    position: relative;
+}
+</style>
 
 <div class="container mt-4">
     <h2>Products</h2>
@@ -10,6 +32,12 @@
         {% for product in products %}
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
+                    <!-- Heart Icon -->
+                    <div class="wishlist-icon {% if product|in_wishlist:request.user %}added{% endif %}" 
+                         data-product-id="{{ product.id }}">
+                        <i class="fas fa-heart"></i>
+                    </div>
+
                     {% if product.image %}
                         <img src="{{ product.image.url }}" class="card-img-top">
                     {% endif %}
@@ -18,13 +46,42 @@
                         <p>₹{{ product.price }}</p>
                         <a href="{% url 'product:product_detail' product.pk %}" class="btn btn-primary">View Details</a>
                         <a href="{% url 'cart:add_to_cart' product.id %}" class="btn btn-primary">Add to Cart</a>
-                        <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="btn btn-outline-warning">
-                            Add to Wishlist
-                        </a>                        
                     </div>
                 </div>
             </div>
+
+            
         {% endfor %}
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const icons = document.querySelectorAll('.wishlist-icon');
+
+    icons.forEach(icon => {
+        icon.addEventListener('click', function () {
+            const productId = this.getAttribute('data-product-id');
+            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]')?.value;
+
+            fetch("{% url 'wishlist:toggle_wishlist' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrftoken,
+                },
+                body: JSON.stringify({ product_id: productId }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'added') {
+                    this.classList.add('added');
+                } else if (data.status === 'removed') {
+                    this.classList.remove('added');
+                }
+            });
+        });
+    });
+});
+</script>
 {% endblock %}
