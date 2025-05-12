@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'style/product/list.css' %}">
+
+<div class="container mt-4">
+    <h2>Products</h2>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" class="card-img-top">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5>{{ product.name }}</h5>
+                        <p>₹{{ product.price }}</p>
+                        <a href="{% url 'product:product_detail' product.pk %}" class="btn btn-primary">View Details</a>
+                        <a href="{% url 'cart:add_to_cart' product.id %}" class="btn btn-primary">Add to Cart</a>
+                        <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="btn btn-outline-warning">
+                            Add to Wishlist
+                        </a>                        
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .profile-container {
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 30px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.05);
+        font-family: 'Segoe UI', sans-serif;
+    }
+    .profile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .profile-pic-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    .profile-pic-wrapper img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ccc;
+    }
+    .profile-pic-wrapper i {
+        position: absolute;
+        bottom: 5px;
+        right: -10px;
+        font-size: 18px;
+        color: #555;
+        background: #fff;
+        padding: 4px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+    .edit-btn {
+        padding: 6px 14px;
+        background: #000;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+    .form-control {
+        border-radius: 8px;
+        height: 45px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .save-btn {
+        background: #000;
+        color: white;
+        padding: 10px 30px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        margin-top: 10px;
+        float: right;
+    }
+</style>
+
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-pic-wrapper">
+            {% if request.user.profile.profile_image %}
+                <img src="{{ request.user.profile.profile_image.url }}" alt="Profile Picture">
+            {% else %}
+                <img src="{% static 'images/default-avatar.png' %}" alt="Profile Picture">
+            {% endif %}
+            <i class="fas fa-pen"></i>
+        </div>
+        <button class="edit-btn">✏️ Edit Profile</button>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="row mt-4">
+        <div class="col-md-6 form-group">
+            <label for="id_first_name">First Name</label>
+            {{ user_form.first_name }}
+        </div>
+        <div class="col-md-6 form-group">
+            <label for="id_last_name">Last Name</label>
+            {{ user_form.last_name }}
+        </div>
+        <div class="col-md-6 form-group">
+            <label for="id_email">Email Address</label>
+            {{ user_form.email }}
+        </div>
+        <div class="col-md-6 form-group">
+            <label for="id_phone">Phone Number</label>
+            {{ user_form.phone }}
+        </div>
+        <div class="col-12 form-group">
+            <label for="id_address">Address</label>
+            {{ user_form.address }}
+        </div>
+        <!-- <div class="col-12 form-group">
+            <label for="id_profile_image">Upload Profile Picture</label>
+            {{ profile_form.profile_image }}
+        </div> -->
+    </div>
+
+    <button type="submit" class="save-btn">SAVE</button>
+</form>
+
+</div>
+{% endblock %}

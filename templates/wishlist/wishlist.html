@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'style/wishlist/wishlist.css' %}">
+
+<div class="container mt-4">
+    <h2>Your Wishlist</h2>
+    <div class="row">
+        {% for item in wishlist_items %}
+            <div class="col-md-3 mb-3">
+                <div class="card h-100">
+                    <img src="{{ item.product.image.url }}" class="card-img-top" alt="{{ item.product.name }}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ item.product.name }}</h5>
+                        <a href="{% url 'product:product_detail' item.product.id %}" class="btn btn-sm btn-outline-primary">View</a>
+                        <a href="{% url 'wishlist:remove_from_wishlist' item.product.id %}" class="btn btn-sm btn-outline-danger">Remove</a>
+                        <a href="{% url 'cart:add_to_cart' item.product.id %}" class="btn btn-sm btn-outline-success">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>You have no items in your wishlist.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

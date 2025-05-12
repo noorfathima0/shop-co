@@ -1,0 +1,67 @@
+/* Order History Page - Krist Theme Consistency */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 850px;
+}
+
+/* Heading */
+h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #1c1c1c;
+}
+
+/* Order List */
+.list-group {
+    border: none;
+    padding: 0;
+}
+
+/* Each Order Card */
+.list-group-item {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fafafa;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+/* Order ID & Date */
+.list-group-item strong {
+    font-size: 16px;
+    color: #000;
+}
+
+/* Inner item list */
+.list-group-item ul {
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.list-group-item ul li {
+    font-size: 14px;
+    color: #444;
+}
+
+/* Total styling */
+.list-group-item strong:last-child {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+}
+
+/* Empty state */
+p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 20px;
+}

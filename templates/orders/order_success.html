@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'style/orders/order_success.css' %}">
+<link rel="stylesheet" href="{% static 'style/base/style.css' %}">
+
+<div class="container text-center py-5">
+    <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
+    <h2>Thank you for your order!</h2>
+    <p>Your order has been successfully placed.</p>
+    <a href="{% url 'product:product_list' %}" class="btn btn-outline-dark mt-3">Continue Shopping</a>
+</div>
+{% endblock %}

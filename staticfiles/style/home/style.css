@@ -1,0 +1,86 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Hero Section */
+.hero-section {
+    background: url('/static/images/hero.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: right;
+}
+
+
+.hero-section div {
+    margin-left: 600px;
+    margin-top: 100px;
+    text-align: right;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.hero-section .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+    transition: 0.3s;
+}
+
+.hero-section .btn:hover {
+    background: white;
+    color: black;
+}
+
+/* New Arrivals */
+.new-arrivals .card {
+    border: none;
+}
+
+.new-arrivals .card img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Sale Banner */
+.sale-banner {
+    background: url('../../images/sale-banner.jpg.jpg') no-repeat center center/cover;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+/* Categories Section */
+.categories-section {
+    float: left;
+    text-align:justify;
+    padding: 50px 0;
+}
+.categories-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+.categories {
+    display: grid;
+    width: 100%;
+}
+
+/* Top Sellers */
+.top-sellers .card img {
+    width: 100%;
+    border-radius: 5px;
+}

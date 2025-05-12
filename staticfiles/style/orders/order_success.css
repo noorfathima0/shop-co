@@ -1,0 +1,52 @@
+/* Base styles for the success page */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    max-width: 600px;
+}
+
+/* Success Icon */
+.fa-check-circle {
+    font-size: 60px;
+    color: #28a745;
+}
+
+/* Headline */
+h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #1c1c1c;
+}
+
+/* Paragraph */
+p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Button */
+.btn-outline-dark {
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 30px;
+    border: 2px solid #000;
+    color: #000;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-outline-dark:hover {
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Responsive padding */
+.py-5 {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+}

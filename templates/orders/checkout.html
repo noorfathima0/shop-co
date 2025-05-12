@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'style/orders/checkout.css' %}">
+
+<div class="container mt-5 checkout-page">
+    <h2 class="mb-4 font-weight-bold">Shipping Address</h2>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card p-4 mb-4">
+                <h5 class="mb-3">Add an address</h5>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.full_name.label_tag }} {{ form.full_name }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.address.label_tag }} {{ form.address }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.city.label_tag }} {{ form.city }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.postal_code.label_tag }} {{ form.postal_code }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.country.label_tag }} {{ form.country }}
+                    </div>
+
+                    <div class="alert alert-info mt-4">
+                        <strong>Payment Method:</strong> Cash on Delivery (COD)<br>
+                        You’ll pay at the time of delivery.
+                    </div>
+
+                    <button type="submit" class="btn btn-dark mt-3">Place Order</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

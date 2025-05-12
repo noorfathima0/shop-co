@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'style/orders/order_history.css' %}">
+
+<div class="container mt-4">
+    <h2>Order History</h2>
+    {% if orders %}
+        <ul class="list-group">
+            {% for order in orders %}
+            <li class="list-group-item">
+                <strong>Order #{{ order.id }}</strong> - {{ order.created_at|date:"Y-m-d H:i" }}<br>
+                Items:
+                <ul>
+                    {% for item in order.items.all %}
+                        <li>{{ item.product.name }} (x{{ item.quantity }}) - ₹{{ item.total_price }}</li>
+                        <li>Delivery charges - ₹50</li>
+                    {% endfor %}
+                </ul>
+                <strong>Total: ₹{{ order.total|add:"0"|add:50 }}</strong>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven’t placed any orders yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

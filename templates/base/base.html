@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop-co</title>
+        {% load static %}
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../../static/style/base/style.css">
+</head>
+<body>
+
+<div class="content">
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+        <div class="container-fluid">
+            <button class="btn" id="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">Shop-co</a>
+
+            <form class="d-flex search-bar mx-auto">
+                <input class="form-control me-2" type="search" placeholder="Search by product, category or collection" aria-label="Search">
+            </form>
+
+            <div class="d-flex align-items-center gap-2">
+                <!-- Cart -->
+                <a href="{% url 'cart:view_cart' %}" class="btn" title="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            
+                <!-- Wishlist (adjust URL name if needed) -->
+                <a href="{% url 'wishlist:wishlist_view' %}" class="btn" title="Wishlist">
+                    <i class="fas fa-heart"></i>
+                </a>
+            
+                <a href="{% url 'users:login' %}" class="btn" title="Login">
+                    <i class="fas fa-user"></i>
+                </a>
+                
+            </div>
+            
+        </div>
+    </nav>
+
+    <!-- Sidebar Menu -->
+    <div class="overlay" id="overlay"></div>
+
+    <div class="sidebar p-4" id="sidebar" style="width: 300px; background-color: #fff; height: 100vh;">
+        <span class="close-btn" id="close-btn" style="font-size: 24px; cursor: pointer;">&times;</span>
+        
+        <div class="text-center my-4">
+            {% if request.user.is_authenticated and request.user.profile.profile_image %}
+                <img src="{{ request.user.profile.profile_image.url }}" alt="Profile" class="rounded-circle mb-2" width="80" height="80">
+            {% else %}
+                <img src="{% static 'images/default-avatar.png' %}" alt="Default Profile" class="rounded-circle mb-2" width="80" height="80">
+            {% endif %}
+            <p class="mb-0">Hello 👋</p>
+        </div>
+
+    
+        <ul class="list-unstyled">
+            <li class="d-flex align-items-center mb-3">
+                <i class="fas fa-user me-3"></i>
+                <a href="{% url 'users:profile' %}" class="text-decoration-none text-dark">Personal information</a>
+            </li>
+            <li class="d-flex align-items-center mb-3">
+                <i class="fas fa-shopping-cart me-3"></i>
+                <a href="{% url 'orders:order_history' %}" class="text-decoration-none text-dark">My Orders</a>
+            </li>
+            <li class="d-flex align-items-center mb-3">
+                <i class="fas fa-heart me-3"></i>
+                <a href="{% url 'wishlist:wishlist_view' %}" class="text-decoration-none text-dark">My Wishlists</a>
+            </li>
+            <li class="d-flex align-items-center mb-3">
+                <i class="fas fa-shopping-cart me-2"></i>
+                <a href="{% url 'cart:view_cart' %}" class="text-decoration-none text-dark">My Cart</a>
+            </li>
+        </ul>
+    </div>
+    
+</div>
+
+<!-- Main Content -->
+{% block content %}{% endblock %}
+
+<!-- Footer -->
+<footer class="footer py-3">
+    <div class="container">
+        <div class="row">
+            <!-- Column 1 -->
+            <div class="col-md-3 col-6 mb-3">
+                <h6 class="text-uppercase small">Customer Care</h6>
+                <p class="mb-1">Need help? Email us at</p>
+                <p class="small">info@shopco.com</p>
+                <p class="small">24/7 Availability</p>
+                <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="col-md-3 col-6 mb-3">
+                <h6 class="text-uppercase small">Customer Care</h6>
+                <ul class="list-unstyled small">
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Wholesale</a></li>
+                    <li><a href="#">Affiliates</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3 -->
+            <div class="col-md-3 col-6 mb-3">
+                <h6 class="text-uppercase small">Supplies</h6>
+                <ul class="list-unstyled small">
+                    <li><a href="#">Walk</a></li>
+                    <li><a href="#">Bags</a></li>
+                    <li><a href="#">Wear</a></li>
+                    <li><a href="#">Toys</a></li>
+                    <li><a href="#">Beds</a></li>
+                    <li><a href="#">Bestseller</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4 -->
+            <div class="col-md-3 col-6 mb-3">
+                <h6 class="text-uppercase small">Company</h6>
+                <ul class="list-unstyled small">
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Blogs</a></li>
+                </ul>
+                <h6 class="text-uppercase small">About</h6>
+                <ul class="list-unstyled small">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Collaborations</a></li>
+                    <li><a href="#">Charities</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Footer Bottom -->
+<div class="footer-bottom text-center py-2">
+    <small>Terms of Service | Privacy Policy | Accessibility</small><br>
+    <small>© Shop-co 2024</small>
+</div>
+
+<!-- JavaScript -->
+<script>
+    document.getElementById('menu-btn').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.add('active');
+        document.getElementById('overlay').classList.add('active');
+    });
+
+    document.getElementById('close-btn').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.remove('active');
+        document.getElementById('overlay').classList.remove('active');
+    });
+
+    document.getElementById('overlay').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.remove('active');
+        document.getElementById('overlay').classList.remove('active');
+    });
+</script>
+
+</body>
+</html>
