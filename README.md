@@ -2,12 +2,6 @@
 
 Shop.co is a fully responsive, modern e-commerce web application built with cutting-edge frontend technologies. Designed with a sleek UI and optimized user experience, Shop.co demonstrates core e-commerce features including product listings, shopping cart management, responsive navigation, and a polished visual design—ideal for showcasing frontend development skills.
 
-![Shop.co Screenshot](./assets/screenshot.png) <!-- Replace with actual screenshot path -->
-
-## 🌐 Live Demo
-
-[Click Here to View Live](https://your-deployment-link.com) <!-- Add Vercel/Netlify link if deployed -->
-
 ---
 
 ## 📌 Features
