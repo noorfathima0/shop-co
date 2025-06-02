@@ -1,29 +1,30 @@
-# 🛍️ Shop.co – Modern E-commerce Web App
+# 🛍️ Shop.co – Full-Stack Django E-commerce Platform
 
-Shop.co is a fully responsive, modern e-commerce web application built with cutting-edge frontend technologies. Designed with a sleek UI and optimized user experience, Shop.co demonstrates core e-commerce features including product listings, shopping cart management, responsive navigation, and a polished visual design—ideal for showcasing frontend development skills.
+**Shop.co** is a modern, full-stack e-commerce platform built using Django. The project includes user authentication, dynamic product listings, cart and wishlist functionality, order management, and a full admin backend. Designed with scalability and clarity, this project reflects practical application of Django and Bootstrap to simulate a real-world online shopping experience.
 
 ---
 
 ## 📌 Features
 
-- 🖼️ Beautiful, minimalist homepage layout
-- 🔍 Product listing with category filters
-- 🛒 Add to cart and cart item count badge
-- 📱 Fully responsive across all devices
-- 💡 Clean, maintainable component-based codebase
-- 🌙 Light/Dark mode toggle *(Optional)*
+- 🔐 User authentication: signup, login, logout
+- 🛒 Shopping cart: add/remove items, update quantities
+- ❤️ Wishlist feature
+- 📦 Product listing with categories and search
+- 📬 Order placement and tracking
+- 🧑‍💼 Admin dashboard for managing users, products, orders
+- 🎨 Responsive UI using Bootstrap and Font Awesome
 
 ---
 
 ## ⚙️ Tech Stack
 
-| Tech            | Description                     |
-|-----------------|---------------------------------|
-| **React.js**    | Component-based UI framework    |
-| **Tailwind CSS**| Utility-first CSS styling       |
-| **Vite**        | Fast frontend build tool        |
-| **React Icons** | Scalable vector icons           |
-| **React Router**| Client-side routing (optional)  |
+| Layer         | Technology                        |
+|---------------|------------------------------------|
+| Backend       | Django (Python)                    |
+| Frontend      | HTML5, CSS3, Bootstrap             |
+| Icons         | Font Awesome                       |
+| Database      | SQLite (development)               |
+| Deployment    | (Pluggable: Heroku, Render, etc.)  |
 
 ---
 
@@ -31,79 +32,84 @@ Shop.co is a fully responsive, modern e-commerce web application built with cutt
 
 ```bash
 shop-co/
-├── public/
-│   └── ...
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── pages/
-│   ├── App.jsx
-│   └── main.jsx
-├── tailwind.config.js
-├── index.html
-└── package.json
+├── base/              # Base templates and views
+├── cart/              # Shopping cart logic
+├── home/              # Landing and home views
+├── media/             # Uploaded product images
+├── orders/            # Order management and checkout
+├── product/           # Product model, views, forms
+├── shop_co/           # Django settings and root config
+├── static/            # Static files (CSS, JS, images)
+├── staticfiles/       # Collected static files for production
+├── templates/         # Global templates
+├── users/             # Custom user auth logic
+├── wishlist/          # Wishlist functionality
+├── manage.py
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Clone the Repository
+### Clone & Setup
 
 ```bash
 git clone https://github.com/noorfathima0/shop-co.git
 cd shop-co
+python -m venv env
+source env/bin/activate   # On Windows use: env\Scripts\activate
+pip install -r requirements.txt
 ```
 
-### 2. Install Dependencies
+### Run Migrations & Start Server
 
 ```bash
-npm install
+python manage.py migrate
+python manage.py runserver
 ```
 
-### 3. Run the App Locally
-
-```bash
-npm run dev
-```
-
-Visit `http://localhost:5173` in your browser.
+Visit: `http://127.0.0.1:8000`
 
 ---
 
-## 📷 Screenshots
+## 🧑‍💼 Admin Panel
 
-| Home Page | Product Grid | Cart Preview |
-|-----------|--------------|--------------|
-| ![Home](./assets/home.png) | ![Products](./assets/products.png) | ![Cart](./assets/cart.png) |
+Access via: `/admin/`
 
-> *(Replace the placeholders above with your own images for a polished touch.)*
+Create superuser:
+
+```bash
+python manage.py createsuperuser
+```
 
 ---
 
-## 🎯 Future Enhancements
+## 🛠️ Future Enhancements
 
-- 🔐 User authentication & profile management
-- 🧾 Checkout and order summary page
-- 📦 Backend integration with database
-- 📊 Admin dashboard for product management
+- ✅ Stripe/PayPal payment integration
+- 🧾 Invoice & email notification system
+- 📊 Admin analytics dashboard
+- 🌍 Multilingual support (i18n)
+- 🧪 Test coverage for models and views
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Fork the repo and open a pull request.
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE)
 
 ---
 
-## 🙋‍♀️ About the Developer
+## 👩‍💻 Developed by
 
-Developed with 💻 by **Noor Fathima**  
-🚀 [Portfolio](https://noorfathima0.github.io/My-Portfolio)  
-📫 [LinkedIn](https://www.linkedin.com/in/noorfathima0/) | [GitHub](https://github.com/noorfathima0)
+**Noor Fathima**  
+📫 [Portfolio](https://noorfathima0.github.io/My-Portfolio)  
+🐙 [GitHub](https://github.com/noorfathima0)
